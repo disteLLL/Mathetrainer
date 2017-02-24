@@ -8,16 +8,21 @@ import java.awt.event.ActionEvent;
 
 
 public class MainGUI extends JFrame implements ActionListener {
+  
+	TutorialGUI tutorial;
+	
 
   public static void main(String[] args) {
     
     MainGUI main = new MainGUI();
   }
   
-  public MainGUI() {
+  private MainGUI() {
     
     super("Mathetrainer");
-    initialize();   
+    initialize();
+    this.tutorial = new TutorialGUI();
+    
   }
 
   private void initialize() {
@@ -39,7 +44,7 @@ public class MainGUI extends JFrame implements ActionListener {
     // GridRow2 --------------------------------------------------------------
     JPanel jPanel2 = new JPanel();
     TitledBorder title1 = BorderFactory.createTitledBorder("Übungsaufgaben");
-    title1.setTitleFont(new Font(Font.DIALOG,Font.BOLD,13));
+    title1.setTitleFont(new Font(Font.DIALOG,Font.BOLD,14));
     jPanel2.setBorder(title1);
     jPanel2.setLayout(new GridLayout (3,2));
     cp.add(jPanel2);
@@ -56,13 +61,14 @@ public class MainGUI extends JFrame implements ActionListener {
       
     JCheckBox jCheckBox3 = new JCheckBox("Prozentrechnung");
     JButton jButton2 = new JButton("Start");
+    
     jPanel2.add(jCheckBox3);
     jPanel2.add(jButton2);
       
     // GridRow3 --------------------------------------------------------------
     JPanel jPanel3 = new JPanel();
     TitledBorder title2 = BorderFactory.createTitledBorder("Freies Üben");
-    title2.setTitleFont(new Font(Font.DIALOG,Font.BOLD,13));
+    title2.setTitleFont(new Font(Font.DIALOG,Font.BOLD,14));
     jPanel3.setBorder(title2);
     jPanel3.setLayout(new GridLayout (3,2));
     cp.add(jPanel3);
@@ -90,13 +96,28 @@ public class MainGUI extends JFrame implements ActionListener {
     btGroup2.add(jRadioButton3);
     btGroup2.add(jRadioButton4);
     
+    jButton1.addActionListener(this);
+    jButton1.setActionCommand("tutorials");
+    jButton2.addActionListener(this);
+    jButton2.setActionCommand("startUebung");
+    jButton3.addActionListener(this);
+    jButton3.setActionCommand("startFrei");
+    
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     pack();
     setVisible(true);
   }
   
   public void actionPerformed(ActionEvent ae) {
-    
-  }
-  
+    String ac = ae.getActionCommand();
+    if (ac.equals("tutorials")) {
+    	tutorial.setVisible(true);
+    }
+    else if (ac.equals("startUebung")) {
+    	
+    }
+    else if (ac.equals("startFrei")) {
+    	
+    }
+  } 
 }

@@ -7,9 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class MainGUI extends JFrame implements ActionListener {
+public class MainGUI implements ActionListener {
   
 	TutorialGUI tutorial;
+	JFrame frame;
 	
 
   public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class MainGUI extends JFrame implements ActionListener {
   
   private MainGUI() {
     
-    super("Mathetrainer");
+    frame = new JFrame();
     initialize();
     this.tutorial = new TutorialGUI();
     
@@ -29,9 +30,9 @@ public class MainGUI extends JFrame implements ActionListener {
     
     // -------------------------------------------------------------- GridLayout
     GridLayout gridLayout = new GridLayout(3,1);
-    Container cp = getContentPane();
-    cp.setLayout(gridLayout);
-    setPreferredSize(new Dimension(300,300));
+    frame.setLayout(gridLayout);
+    frame.setPreferredSize(new Dimension(300,300));
+    frame.setTitle("Mathetrainer");
     
     // GridRow1 --------------------------------------------------------------
     JPanel jPanel1 = new JPanel();
@@ -39,7 +40,7 @@ public class MainGUI extends JFrame implements ActionListener {
     jButton1.setPreferredSize(new Dimension(274,70));
     jButton1.setFont(new Font(Font.DIALOG,Font.BOLD,14));
     jPanel1.add(jButton1);
-    cp.add(jPanel1);
+    frame.add(jPanel1);
     
     // GridRow2 --------------------------------------------------------------
     JPanel jPanel2 = new JPanel();
@@ -47,7 +48,7 @@ public class MainGUI extends JFrame implements ActionListener {
     title1.setTitleFont(new Font(Font.DIALOG,Font.BOLD,14));
     jPanel2.setBorder(title1);
     jPanel2.setLayout(new GridLayout (3,2));
-    cp.add(jPanel2);
+    frame.add(jPanel2);
     
     JCheckBox jCheckBox1 = new JCheckBox("Division");
     JRadioButton jRadioButton1 = new JRadioButton("Level 1",true);
@@ -71,7 +72,7 @@ public class MainGUI extends JFrame implements ActionListener {
     title2.setTitleFont(new Font(Font.DIALOG,Font.BOLD,14));
     jPanel3.setBorder(title2);
     jPanel3.setLayout(new GridLayout (3,2));
-    cp.add(jPanel3);
+    frame.add(jPanel3);
      
     JCheckBox jCheckBox4 = new JCheckBox("Division");
     JRadioButton jRadioButton3 = new JRadioButton("Level 1",true);
@@ -103,15 +104,15 @@ public class MainGUI extends JFrame implements ActionListener {
     jButton3.addActionListener(this);
     jButton3.setActionCommand("startFrei");
     
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
-    pack();
-    setVisible(true);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.pack();
+    frame.setVisible(true);
   }
   
   public void actionPerformed(ActionEvent ae) {
     String ac = ae.getActionCommand();
     if (ac.equals("tutorials")) {
-    	tutorial.setVisible(true);
+    	tutorial.frame.setVisible(true);
     }
     else if (ac.equals("startUebung")) {
     	

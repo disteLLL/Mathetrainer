@@ -3,8 +3,7 @@ package main.gui;
 import java.awt.*; 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 
 public class MainGUI implements ActionListener {
@@ -14,8 +13,7 @@ public class MainGUI implements ActionListener {
 	
 
   public static void main(String[] args) {
-    
-    MainGUI main = new MainGUI();
+    new MainGUI();
   }
   
   private MainGUI() {
@@ -29,9 +27,9 @@ public class MainGUI implements ActionListener {
   private void initialize() {
     
     // -------------------------------------------------------------- GridLayout
-    GridLayout gridLayout = new GridLayout(3,1);
+    GridLayout gridLayout = new GridLayout(2,1);
     frame.setLayout(gridLayout);
-    frame.setPreferredSize(new Dimension(300,300));
+    frame.setPreferredSize(new Dimension(300,220));
     frame.setTitle("Mathetrainer");
     
     // GridRow1 --------------------------------------------------------------
@@ -41,68 +39,39 @@ public class MainGUI implements ActionListener {
     jButton1.setFont(new Font(Font.DIALOG,Font.BOLD,14));
     jPanel1.add(jButton1);
     frame.add(jPanel1);
-    
+      
     // GridRow2 --------------------------------------------------------------
     JPanel jPanel2 = new JPanel();
-    TitledBorder title1 = BorderFactory.createTitledBorder("Übungsaufgaben");
-    title1.setTitleFont(new Font(Font.DIALOG,Font.BOLD,14));
-    jPanel2.setBorder(title1);
+    TitledBorder title = BorderFactory.createTitledBorder("Freies Üben");
+    title.setTitleFont(new Font(Font.DIALOG,Font.BOLD,14));
+    jPanel2.setBorder(title);
     jPanel2.setLayout(new GridLayout (3,2));
     frame.add(jPanel2);
-    
-    JCheckBox jCheckBox1 = new JCheckBox("Division");
+     
+    JCheckBox jCheckBox1 = new JCheckBox("Division",true);
     JRadioButton jRadioButton1 = new JRadioButton("Level 1",true);
     jPanel2.add(jCheckBox1);
     jPanel2.add(jRadioButton1);
-      
-    JCheckBox jCheckBox2 = new JCheckBox("Brüche kürzen");
+  
+    JCheckBox jCheckBox2 = new JCheckBox("Brüche kürzen",true);
     JRadioButton jRadioButton2 = new JRadioButton("Level 2");
     jPanel2.add(jCheckBox2);
     jPanel2.add(jRadioButton2);
       
-    JCheckBox jCheckBox3 = new JCheckBox("Prozentrechnung");
+    JCheckBox jCheckBox3 = new JCheckBox("Prozentrechnung",true);
     JButton jButton2 = new JButton("Start");
-    
     jPanel2.add(jCheckBox3);
     jPanel2.add(jButton2);
-      
-    // GridRow3 --------------------------------------------------------------
-    JPanel jPanel3 = new JPanel();
-    TitledBorder title2 = BorderFactory.createTitledBorder("Freies Üben");
-    title2.setTitleFont(new Font(Font.DIALOG,Font.BOLD,14));
-    jPanel3.setBorder(title2);
-    jPanel3.setLayout(new GridLayout (3,2));
-    frame.add(jPanel3);
-     
-    JCheckBox jCheckBox4 = new JCheckBox("Division");
-    JRadioButton jRadioButton3 = new JRadioButton("Level 1",true);
-    jPanel3.add(jCheckBox4);
-    jPanel3.add(jRadioButton3);
-  
-    JCheckBox jCheckBox5 = new JCheckBox("Brüche kürzen");
-    JRadioButton jRadioButton4 = new JRadioButton("Level 2");
-    jPanel3.add(jCheckBox5);
-    jPanel3.add(jRadioButton4);
-      
-    JCheckBox jCheckBox6 = new JCheckBox("Prozentrechnung");
-    JButton jButton3 = new JButton("Start");
-    jPanel3.add(jCheckBox6);
-    jPanel3.add(jButton3);
     // -------------------------------------------------------------- GridLayout  
        
-    ButtonGroup btGroup1 = new ButtonGroup();
-    ButtonGroup btGroup2 = new ButtonGroup();
-    btGroup1.add(jRadioButton1);
-    btGroup1.add(jRadioButton2);
-    btGroup2.add(jRadioButton3);
-    btGroup2.add(jRadioButton4);
+    ButtonGroup btGroup = new ButtonGroup();
+    btGroup.add(jRadioButton1);
+    btGroup.add(jRadioButton2);
     
     jButton1.addActionListener(this);
     jButton1.setActionCommand("tutorials");
     jButton2.addActionListener(this);
-    jButton2.setActionCommand("startUebung");
-    jButton3.addActionListener(this);
-    jButton3.setActionCommand("startFrei");
+    jButton2.setActionCommand("start");
     
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.pack();
@@ -114,11 +83,8 @@ public class MainGUI implements ActionListener {
     if (ac.equals("tutorials")) {
     	tutorial.frame.setVisible(true);
     }
-    else if (ac.equals("startUebung")) {
+    if (ac.equals("start")) {
     	
-    }
-    else if (ac.equals("startFrei")) {
-    	
-    }
+    }   
   } 
 }

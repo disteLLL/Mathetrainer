@@ -9,6 +9,7 @@ import java.awt.event.*;
 public class MainGUI implements ActionListener {
   
 	TutorialGUI tutorial;
+	TaskGUI task;
 	JFrame frame;
 	
 
@@ -21,6 +22,7 @@ public class MainGUI implements ActionListener {
     frame = new JFrame();
     initialize();
     this.tutorial = new TutorialGUI();
+    this.task = new TaskGUI();
     
   }
 
@@ -35,7 +37,7 @@ public class MainGUI implements ActionListener {
     // GridRow1 --------------------------------------------------------------
     JPanel jPanel1 = new JPanel();
     JButton jButton1 = new JButton("Tutorials");
-    jButton1.setPreferredSize(new Dimension(274,70));
+    jButton1.setPreferredSize(new Dimension(270,70));
     jButton1.setFont(new Font(Font.DIALOG,Font.BOLD,14));
     jPanel1.add(jButton1);
     frame.add(jPanel1);
@@ -84,7 +86,7 @@ public class MainGUI implements ActionListener {
     	tutorial.frame.setVisible(true);
     }
     if (ac.equals("start")) {
-    	
+    	task.frame.setVisible(true);
     }   
   } 
 }

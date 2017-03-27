@@ -10,7 +10,13 @@ public class MainGUI implements ActionListener {
   
 	TutorialGUI tutorial;
 	TaskGUI task;
+	Select select;
 	JFrame frame;
+	public JCheckBox jCheckBox1;
+	public JCheckBox jCheckBox2;
+	public JCheckBox jCheckBox3;
+	public JRadioButton jRadioButton1;
+	public JRadioButton jRadioButton2;
 	
 
   public static void main(String[] args) {
@@ -23,7 +29,7 @@ public class MainGUI implements ActionListener {
     initialize();
     this.tutorial = new TutorialGUI();
     this.task = new TaskGUI();
-    
+  
   }
 
   private void initialize() {
@@ -50,17 +56,17 @@ public class MainGUI implements ActionListener {
     jPanel2.setLayout(new GridLayout (3,2));
     frame.add(jPanel2);
      
-    JCheckBox jCheckBox1 = new JCheckBox("Division",true);
-    JRadioButton jRadioButton1 = new JRadioButton("Level 1",true);
+    jCheckBox1 = new JCheckBox("Division",true);
+    jRadioButton1 = new JRadioButton("Level 1",true);
     jPanel2.add(jCheckBox1);
     jPanel2.add(jRadioButton1);
   
-    JCheckBox jCheckBox2 = new JCheckBox("Brüche kürzen",true);
-    JRadioButton jRadioButton2 = new JRadioButton("Level 2");
+    jCheckBox2 = new JCheckBox("Brüche kürzen",true);
+    jRadioButton2 = new JRadioButton("Level 2");
     jPanel2.add(jCheckBox2);
     jPanel2.add(jRadioButton2);
       
-    JCheckBox jCheckBox3 = new JCheckBox("Prozentrechnung",true);
+    jCheckBox3 = new JCheckBox("Prozentrechnung",true);
     JButton jButton2 = new JButton("Start");
     jPanel2.add(jCheckBox3);
     jPanel2.add(jButton2);
@@ -86,7 +92,12 @@ public class MainGUI implements ActionListener {
     	tutorial.frame.setVisible(true);
     }
     if (ac.equals("start")) {
+    	
+    	
+    	Select.selectTask(jRadioButton1.isSelected(),jCheckBox1.isSelected(),jCheckBox2.isSelected(),jCheckBox3.isSelected(),task);
+    	task.getCheckBoxes(jRadioButton1.isSelected(),jCheckBox1.isSelected(),jCheckBox2.isSelected(),jCheckBox3.isSelected());
+    	
     	task.frame.setVisible(true);
     }   
-  } 
+  }
 }

@@ -11,19 +11,20 @@ import java.io.IOException;
 
 public class TutorialGUI implements ActionListener, WindowListener {
 	
-	JFrame frame;
-	String[] divisionNames = {"Einleitung","Beispiele","Division mit Rest","Schriftliche Division","Lösungsweg","Schriftliche Division mit Rest"};
-	String[] fractionNames = {"Einleitung","größter gemeinsamer Teiler","Teilermengen","Euklidischer Algorithmus","Beispiel"};
-	String divisionPath = "resources/division/";
-	String fractionPath = "resources/fraction/";
-	String percentPath = "resources/percent/";
+	public JFrame frame;
+	private String[] divisionNames = {"Einleitung","Beispiele","Division mit Rest","Schriftliche Division","Lösungsweg","Schriftliche Division mit Rest"};
+	private String[] fractionNames = {"Einleitung","größter gemeinsamer Teiler","Teilermengen","Euklidischer Algorithmus","Beispiel"};
+	private String[] percentNames = {"Einleitung","Grundwert, Prozentwert, Prozentsatz","Prozent Schreibweisen","Formeln und Beispiele"};
+	private String divisionPath = "resources/division/";
+	private String fractionPath = "resources/fraction/";
+	private String percentPath = "resources/percent/";
 	
 	public TutorialGUI () {
 		
 		frame = new JFrame();
 		frame.setLocation (300,0);
 	    frame.addWindowListener(this);
-		frame.setDefaultCloseOperation (JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setDefaultCloseOperation (JFrame.DO_NOTHING_ON_CLOSE); // siehe windowClosing()
 		frame.setVisible(false);
 		initialize();
 	}
@@ -57,8 +58,9 @@ public class TutorialGUI implements ActionListener, WindowListener {
 	    frame.pack ();   	
 	}
 	
-	public void actionPerformed(ActionEvent ae) {
-		String ac = ae.getActionCommand();
+	public void actionPerformed(ActionEvent e) {
+		
+		String ac = e.getActionCommand();
 		if (ac.equals("division")) {
 			tutorialPanel(divisionNames,divisionPath);
 			frame.setTitle("Division");
@@ -67,9 +69,11 @@ public class TutorialGUI implements ActionListener, WindowListener {
 			tutorialPanel(fractionNames,fractionPath);
 			frame.setTitle("Brüche kürzen");
 		}
-		if (ac.equals("back")) {
-			initialize();
+		if (ac.equals("percent")) {
+			tutorialPanel(percentNames,percentPath);
+			frame.setTitle("Prozentrechnung");
 		}
+		if (ac.equals("back")) initialize();	
 	  }
 	
 	public void tutorialPanel (String[] names, String filePath) {
@@ -80,7 +84,8 @@ public class TutorialGUI implements ActionListener, WindowListener {
 		UIManager.put("TabbedPane.contentAreaColor", ColorUIResource.WHITE);
 		UIManager.put("TabbedPane.selected", ColorUIResource.WHITE);
 		JTabbedPane jTPane = new JTabbedPane(JTabbedPane.TOP);
-			
+		
+		// füllt das JTabbedPane mit den Bildern aus resources/*
 		for (int i=0;i<names.length;i++) {
 			try {
 				BufferedImage image = ImageIO.read(new File(filePath+names[i]+".png"));

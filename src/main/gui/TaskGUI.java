@@ -21,17 +21,18 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 public class TaskGUI implements ActionListener, WindowListener,KeyListener {
-	JFrame frame;
-	JButton check;
-	JLabel result;
-	JTextField answer1;
-	JTextField answer2;
-	TitledBorder title1;
-	String resultStr,fractionResult1,fractionResult2;
-	Font font1 = new Font(Font.DIALOG,Font.PLAIN,17);
-    Font font2 = new Font(Font.DIALOG,Font.BOLD,17);
-    boolean radioButton,division,fraction,percent;
-    boolean percentCheck = false;
+	
+	public JFrame frame;
+	private JButton check;
+	private JLabel result;
+	private JTextField answer1;
+	private JTextField answer2;
+	private TitledBorder title1;
+	private String resultStr,fractionResult1,fractionResult2;
+	private Font font1 = new Font(Font.DIALOG,Font.PLAIN,17);
+    private Font font2 = new Font(Font.DIALOG,Font.BOLD,17);
+    private boolean radioButton,division,fraction,percent;
+    private boolean percentCheck = false;
 	
 	public TaskGUI () {
 		
@@ -74,8 +75,7 @@ public class TaskGUI implements ActionListener, WindowListener,KeyListener {
 		jPanel1.add(equals);
 		jPanel1.add(answer1);
 		frame.add(jPanel1,BorderLayout.BEFORE_FIRST_LINE);
-		
-		
+			
 		JPanel jPanel2 = new JPanel();
 		TitledBorder title2 = BorderFactory.createTitledBorder("Ergebnis");
 	    title2.setTitleFont(new Font(Font.DIALOG,Font.PLAIN,15));
@@ -200,7 +200,7 @@ public class TaskGUI implements ActionListener, WindowListener,KeyListener {
 	    
 	    if (numbers[3] == 1) {
 	     
-	    	jPanel1.setPreferredSize(new Dimension(300,120));
+	    	jPanel1.setPreferredSize(new Dimension(300,120));	
 	    	
 	    	JPanel jPanelTask = new JPanel();
 	    	JLabel text = new JLabel("Wieviel Prozent sind");
@@ -304,7 +304,8 @@ public class TaskGUI implements ActionListener, WindowListener,KeyListener {
 		}
 	}
 	
-	public void getCheckBoxes (boolean radioButton,boolean division,boolean fraction,boolean percent) {
+	public void updateCheckBoxes (boolean radioButton,boolean division,boolean fraction,boolean percent) {
+		
 		this.radioButton = radioButton;
 		this.division = division;
 		this.fraction = fraction;
@@ -313,6 +314,7 @@ public class TaskGUI implements ActionListener, WindowListener,KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		String ac = e.getActionCommand();
 		if (ac.equals("check")) {
 			check.setText("Nächste Aufgabe");
@@ -334,7 +336,11 @@ public class TaskGUI implements ActionListener, WindowListener,KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) check.doClick();
+		
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (answer1.isFocusOwner() && title1.getTitle().equals("Brüche kürzen")) answer2.requestFocus();
+			else check.doClick();
+		}	
 	}
 	
 	@Override

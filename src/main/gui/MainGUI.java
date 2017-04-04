@@ -8,10 +8,9 @@ import java.awt.event.*;
 
 public class MainGUI implements ActionListener {
   
-	TutorialGUI tutorial;
-	TaskGUI task;
-	Select select;
-	JFrame frame;
+	private TutorialGUI tutorial;
+	private TaskGUI task;
+	private JFrame frame;
 	public JCheckBox jCheckBox1;
 	public JCheckBox jCheckBox2;
 	public JCheckBox jCheckBox3;
@@ -29,7 +28,6 @@ public class MainGUI implements ActionListener {
     initialize();
     this.tutorial = new TutorialGUI();
     this.task = new TaskGUI();
-  
   }
 
   private void initialize() {
@@ -86,17 +84,17 @@ public class MainGUI implements ActionListener {
     frame.setVisible(true);
   }
   
-  public void actionPerformed(ActionEvent ae) {
-    String ac = ae.getActionCommand();
+  public void actionPerformed(ActionEvent e) {
+	  
+    String ac = e.getActionCommand();
     if (ac.equals("tutorials")) {
     	tutorial.frame.setVisible(true);
     }
     if (ac.equals("start")) {
-    	
-    	
+    	// wählt die erste Aufgabe aus	
     	Select.selectTask(jRadioButton1.isSelected(),jCheckBox1.isSelected(),jCheckBox2.isSelected(),jCheckBox3.isSelected(),task);
-    	task.getCheckBoxes(jRadioButton1.isSelected(),jCheckBox1.isSelected(),jCheckBox2.isSelected(),jCheckBox3.isSelected());
-    	
+    	// übergibt der TaskGUI die Button-Selections
+    	task.updateCheckBoxes(jRadioButton1.isSelected(),jCheckBox1.isSelected(),jCheckBox2.isSelected(),jCheckBox3.isSelected());	
     	task.frame.setVisible(true);
     }   
   }

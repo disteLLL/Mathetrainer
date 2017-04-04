@@ -6,6 +6,7 @@ public class Select {
 
 	public static void selectTask (boolean radioButton,boolean division,boolean fraction,boolean percent,TaskGUI task) {
 		
+		// wählt zufällig einen Themenbereich aus und checkt dann ob der Themenbereich vom Nutzer auch ausgewählt wurde
 		Random randy = new Random();
 		int difficulty;
 		int counter;
@@ -24,6 +25,7 @@ public class Select {
 			if(randomChoice == 0){
 				if(division){
 					counter++;
+					// generiert eine Divisionsaufgabe mit der entsprechenden Schwierigkeit und stellt sie im Aufgabenfenster dar
 					task.divisionGUI(Math.division(difficulty));				
 				}
 			}
@@ -33,7 +35,7 @@ public class Select {
 					task.fractionGUI(Math.fraction(difficulty));
 				}
 			}
-			else {
+			if(randomChoice == 2) {
 				if(percent){
 					counter++;
 					task.percentGUI(Math.percent(difficulty));

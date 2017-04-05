@@ -85,9 +85,9 @@ public class Math {
 			int randomNumMult;
 
 			do{
-				randomNumMult = randy.nextInt(4) + 2; 	//Zahlen: 2, 4, 6
-				randomNumBot = randy.nextInt(4) + 6; 	//Zahlen: 6, 8, 10
-			}while(randomNumBot % 2 != 0 || randomNumMult % 2 != 0);	//Es werden nur gerade Zahlen genommen
+				randomNumMult = randy.nextInt(4) + 2; 	//Zahlen: 2 - 6
+				randomNumBot = randy.nextInt(4) + 4; 	//Zahlen: 4 - 8
+			}while(randomNumBot == randomNumMult);	//Es werden nur gerade Zahlen genommen
 			
 			ArrayList<Integer> fraction1 = new ArrayList<Integer>();
 			ArrayList<Integer> fraction2 = new ArrayList<Integer>();
